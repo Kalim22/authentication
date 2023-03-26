@@ -1,38 +1,42 @@
-const express = require('express')
-const cors = require('cors')
+const express = require("express");
+const cors = require("cors");
 
-require('dotenv').config({
-    path: "./secret/.env"
-})
+const path = require("path");
 
-require('colors')
+require("dotenv").config({
+  path: "./secret/.env",
+});
 
-require('./config/db')
+require("colors");
 
-const app = express()
+require("./config/db");
 
-app.use(cors({
-    origin: "*"
-}))
+const app = express();
 
-app.use(express.json())
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-// app.use(express.static(''))
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('hello worldsdfds')
-})
+app.set("view engine", "ejs");
 
-app.use('/', require('./routes/AuthenticateRoutes'))
+const public = path.join(__dirname, "views");
+app.use(express.static(public));
 
-const port = process.env.PORT || 7000
+app.get("/", (req, res) => {
+  return res.send("hello world");
+});
+
+app.use("/", require("./routes/AuthenticateRoutes"));
+
+const port = process.env.PORT || 7000;
 
 app.listen(port, (err) => {
-    if(err){
-        console.log(err)
-    }
-    console.log(`Server is running on http://localhost:${port}`.bgBlue)
-})
-
-
-
+  if (err) {
+    console.log(err);
+  }
+  console.log(`Server is running on http://localhost:${port}`.bgBlue);
+});
