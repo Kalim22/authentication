@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-const mailsend = async (email, url, pageurl) => {
+const mailsend = async (email, url) => {
   try {
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -17,8 +17,10 @@ const mailsend = async (email, url, pageurl) => {
       from: "kalimali2295@gmail.com",
       to: email,
       subject: "verify your email",
-      text: "Hello user \n We are hereby to confirm your email is valid. Please click on mentioned below link to activate your account.\n Thank you for joining us",
-      html: `<a href=${pageurl}>${url}</a>`,
+      text: "",
+      html: `<p>Hello user \n We are hereby to confirm your email is valid. Please click on mentioned below link to activate your account.\n Thank you for joining us</p>
+      <br/>
+      <a href=${url}>${url}</a>`,
     };
 
     transporter.sendMail(details, (err) => {

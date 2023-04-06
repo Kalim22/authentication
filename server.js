@@ -27,12 +27,18 @@ const public = path.join(__dirname, "views");
 app.use(express.static(public));
 
 app.get("/", (req, res) => {
-  return res.send("hello world");
+  return res.render('index');
 });
+
+app.get('/api1/thing/:name', (req, res) => {
+  const {name} = req.params
+
+  return res.send(`hello url from .... ${name}`)
+})
 
 app.use("/", require("./routes/AuthenticateRoutes"));
 
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 8000;
 
 app.listen(port, (err) => {
   if (err) {

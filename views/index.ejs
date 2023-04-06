@@ -18,18 +18,26 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
       }
-      h1,
-      h3 {
+      
+      p{
         color: white;
+      }
+      p:nth-child(1){
+        font-size: 50px;
+        font-weight: 600;
+      }
+      p:last-child{
+        font-size: 40px;
       }
     </style>
   </head>
   <body>
     <section>
-      <h1>Your account has been verified. Now you can login</h1>
+      <p>Your account has been verified. Now you can login</p>
       <br />
-      <h3>Thank you</h3>
+      <p>Thank you</p>
     </section>
   </body>
 </html>
